@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,6 +20,7 @@ namespace task1
             var all = (from customer in customers join city in cities
                       on customer.city equals city.cityID
                       select new {
+                        customer.customerID,
                         customer.name,
                         customer.age,
                         customer.phone,
@@ -55,18 +57,33 @@ namespace task1
                      on customer.city equals city.cityID
                        select new
                        {
+                           customer.customerID,
                            customer.name,
                            customer.age,
                            customer.phone,
                            customer.email,
+                           customer.photo,
                            city.cityName
-                          
+
 
                        }).ToList();
 
 
             GridView1.DataSource= all;
             GridView1.DataBind();
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = (LinkButton)sender;
+            HiddenField hd = (HiddenField)lb.FindControl("hdID");
+            int id = Convert.ToInt32(hd.Value);
+            Customer c = obj.Customers.Single(cc => cc.customerID == id);
+
+            obj.Customers.Remove(c);
+            obj.SaveChanges();
+
+            Response.Redirect("show.aspx");
         }
     }
 }

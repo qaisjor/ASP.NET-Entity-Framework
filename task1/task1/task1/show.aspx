@@ -66,7 +66,11 @@
                 <asp:BoundField DataField="email" HeaderText="email" />
                 <asp:BoundField DataField="cityName" HeaderText="city name" />
                 <asp:ImageField DataImageUrlField="photo" HeaderText="photo">
+                    <ControlStyle Height="100px" Width="100px" />
                 </asp:ImageField>
+                <asp:BoundField DataField="customerID" HeaderText="id" />
+                <asp:HyperLinkField DataNavigateUrlFields="customerID" DataNavigateUrlFormatString="Edit.aspx?id={0}" HeaderText="Edit" Text="edit" />
+                <asp:HyperLinkField DataNavigateUrlFields="customerID" DataNavigateUrlFormatString="delete.aspx?id={0}" HeaderText="Delete" Text="delete" />
             </Columns>
             <EditRowStyle BackColor="#7C6F57" />
             <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -79,6 +83,9 @@
             <SortedDescendingCellStyle BackColor="#D4DFE1" />
             <SortedDescendingHeaderStyle BackColor="#15524A" />
         </asp:GridView>
+      
+
+              <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
       
 
             </div>

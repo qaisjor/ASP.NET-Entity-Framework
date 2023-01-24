@@ -47,6 +47,7 @@ namespace task1
                 //table += "</table>";
 
                 //lbltable.Text= table;
+             
             }
         }
 
